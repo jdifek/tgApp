@@ -35,7 +35,7 @@ export default function MainPage() {
 	const rightItems = NAV_ITEMS.slice(2)
 
 	return (
-		<div className='min-h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-col items-center pb-20 relative'>
+		<div className='h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-col items-center relative overflow-hidden'>
 			{/* Холм */}
 			<div className='absolute bottom-0 left-0 w-full h-1/2 bg-green-500 rounded-t-full z-0'></div>
 
@@ -91,7 +91,6 @@ export default function MainPage() {
 
 			{/* Main Chicken */}
 			<div className='flex-1 flex flex-col items-center justify-center relative'>
-				{/* egg */}
 				<img
 					src='/images/egg.PNG'
 					alt='egg'
@@ -99,7 +98,7 @@ export default function MainPage() {
 				/>
 
 				{/* Level Info */}
-				<div className='mt-4 bg-yellow-700 border-2 border-[#171717]  rounded-lg p-2 pt-4 w-80 flex justify-between items-center z-10 relative'>
+				<div className='mt-4 bg-yellow-700 border-2 border-[#171717] rounded-lg p-2 pt-4 w-80 flex justify-between items-center z-10 relative'>
 					<div className='text-white'>
 						<span className='absolute -top-6 text-2xl font-bold text-yellow-outline'>
 							Уровень {level}
@@ -120,7 +119,7 @@ export default function MainPage() {
 							<span className='text-xl font-bold text-brown-outline'>100</span>
 							<img src='/images/cookie.png' className='w-4 h-4' />
 						</div>
-						<button className='bg-green-500 border border-[#171717]  px-2 rounded flex items-center text-xl font-bold text-brown-outline'>
+						<button className='bg-green-500 border border-[#171717] px-2 rounded flex items-center text-xl font-bold text-brown-outline'>
 							Улучшить
 						</button>
 					</div>

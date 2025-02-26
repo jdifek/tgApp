@@ -22,7 +22,7 @@ export default function BottomNav() {
 	const isActive = (path: string) => location.pathname === path
 
 	return (
-		<div className='w-full p-4 flex items-center justify-evenly fixed bottom-2 bg-image'>
+		<div className='w-full p-4 flex items-center justify-evenly fixed inset-x-0 bottom-0 bg-image'>
 			{NAV_ITEMS.map((item, index) => (
 				<button
 					key={index}
