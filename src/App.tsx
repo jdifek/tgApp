@@ -1,14 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import FriendsPage from './pages/FriendsPage';
-import ClansPage from './pages/ClansPage';
-import QuestsPage from './pages/QuestsPage';
-import MarketPage from './pages/MarketPage';
-import FarmPage from './pages/FarmPage';
-import WalletPage from './pages/WalletPage';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import FriendsPage from "./pages/FriendsPage";
+import ClansPage from "./pages/ClansPage";
+import QuestsPage from "./pages/QuestsPage";
+import MarketPage from "./pages/MarketPage";
+import FarmPage from "./pages/FarmPage";
+import WalletPage from "./pages/WalletPage";
 
 function App() {
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // Разворачивает WebApp на весь экран
+    console.log("Telegram WebApp data:", tg.initData);
+  }, []);
+
   return (
     <Router>
       <Routes>
