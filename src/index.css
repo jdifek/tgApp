@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-yellow-outline {
+	color: white;
+	text-shadow: 1px 1px 0px #a16207, -1px -1px 0px #a16207;
+}
+
+.text-brown-outline {
+	color: white;
+	text-shadow: 1px 1px 0px #5d4037, -1px -1px 0px #5d4037;
+}
+
+.text-dark-outline {
+	color: white;
+	text-shadow: 1px 1px 0px #171717, -1px -1px 0px #171717;
+}
+
+.bg-image {
+	background-image: url('/images/nest.PNG');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100px;
+}

@@ -1,107 +1,137 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Cookie, Users, Users2, ShoppingBag, Egg } from 'lucide-react';
-import BottomNav from '../components/BottomNav';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import BottomNav from '../components/BottomNav'
+
+const NAV_ITEMS = [
+	{
+		href: '/friends',
+		image: '/images/friends.PNG',
+		label: 'Друзья',
+	},
+	{
+		href: '/clans',
+		image: '/images/clans.PNG',
+		label: 'Кланы',
+	},
+	{
+		href: '/quests',
+		image: '/images/quests.PNG',
+		label: 'Квесты',
+	},
+	{
+		href: '/market',
+		image: '/images/market.PNG',
+		label: 'Рынок',
+	},
+]
 
 export default function MainPage() {
-  const navigate = useNavigate();
-  const [cookies] = useState(149493);
-  const [level] = useState(1);
-  const [eggsPerDay] = useState(1454);
+	const navigate = useNavigate()
+	const [cookies] = useState(149493)
+	const [level] = useState(1)
+	const [eggsPerDay] = useState(1454)
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-col items-center pb-20">
-      {/* Top Navigation */}
-      <nav className="w-full px-4 py-2 flex justify-between">
-        <button 
-          className="bg-yellow-300 p-2 rounded-lg flex flex-col items-center"
-          onClick={() => navigate('/friends')}
-        >
-          <Users className="w-6 h-6" />
-          <span className="text-xs">Друзья</span>
-        </button>
-        
-        <div className="flex items-center gap-2">
-          <Cookie className="w-6 h-6" />
-          <span className="text-white font-bold">{cookies}</span>
-        </div>
-        
-        <button 
-          className="bg-yellow-300 p-2 rounded-lg flex flex-col items-center"
-          onClick={() => navigate('/quests')}
-        >
-          <ShoppingBag className="w-6 h-6" />
-          <span className="text-xs">Квесты</span>
-        </button>
-      </nav>
+	const leftItems = NAV_ITEMS.slice(0, 2)
+	const rightItems = NAV_ITEMS.slice(2)
 
-      {/* Second Row Navigation */}
-      <div className="w-full px-4 py-2 flex justify-between">
-        <button 
-          className="bg-yellow-300 p-2 rounded-lg flex flex-col items-center"
-          onClick={() => navigate('/clans')}
-        >
-          <Users2 className="w-6 h-6" />
-          <span className="text-xs">Кланы</span>
-        </button>
-        
-        <button 
-          className="bg-yellow-300 p-2 rounded-lg flex flex-col items-center opacity-50"
-          onClick={() => navigate('/market')}
-          disabled
-        >
-          <ShoppingBag className="w-6 h-6" />
-          <span className="text-xs">Рынок</span>
-        </button>
-      </div>
+	return (
+		<div className='min-h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-col items-center pb-20 relative'>
+			{/* Холм */}
+			<div className='absolute bottom-0 left-0 w-full h-1/2 bg-green-500 rounded-t-full z-0'></div>
 
-      {/* Main Chicken */}
-      <div className="flex-1 flex flex-col items-center justify-center relative">
-        <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center relative">
-          <div className="absolute w-full h-full">
-            {/* Egg shell bottom half */}
-            <div className="absolute bottom-0 w-full h-1/2 bg-gray-100 rounded-b-full"></div>
-            {/* Egg shell cracks */}
-            <div className="absolute bottom-1/2 w-full flex justify-center">
-              <div className="w-20 h-4 bg-gray-100 transform -rotate-45 translate-x-2"></div>
-              <div className="w-20 h-4 bg-gray-100 transform rotate-45 -translate-x-2"></div>
-            </div>
-          </div>
-          {/* 2D Chicken */}
-          <div className="relative z-10 w-32 h-32">
-            <div className="w-full h-full bg-yellow-300 rounded-full flex flex-col items-center justify-center">
-              {/* Eyes */}
-              <div className="flex gap-4 mb-2">
-                <div className="w-4 h-4 bg-black rounded-full"></div>
-                <div className="w-4 h-4 bg-black rounded-full"></div>
-              </div>
-              {/* Beak */}
-              <div className="w-4 h-4 bg-orange-500 rotate-45"></div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Level Info */}
-        <div className="mt-4 bg-brown-800 rounded-lg p-2 w-64 flex justify-between items-center">
-          <div className="text-white">
-            <div>Уровень {level}</div>
-            <div className="flex items-center gap-1">
-              <Egg className="w-4 h-4" />
-              <span>{eggsPerDay} в день</span>
-            </div>
-          </div>
-          <button className="bg-green-500 px-4 py-1 rounded flex items-center gap-1">
-            <Cookie className="w-4 h-4" />
-            <span>100</span>
-          </button>
-        </div>
+			<div className='grid grid-cols-4 gap-4 p-4'>
+				{/* left nav */}
+				<div className='flex flex-col gap-4 col-span-1'>
+					{leftItems.map((item, index) => (
+						<button
+							key={index}
+							className='relative bg-yellow-300 p-3 rounded-md flex flex-col items-center'
+							onClick={() => navigate(item.href)}
+						>
+							<img
+								src={item.image}
+								className='rounded-md w-14 h-14'
+								alt={item.label}
+							/>
+							<span className='absolute -top-3 text-sm font-bold text-yellow-outline'>
+								{item.label}
+							</span>
+						</button>
+					))}
+				</div>
 
-        <button className="mt-4 bg-yellow-400 w-64 py-3 rounded-lg font-bold">
-          Начать сбор
-        </button>
-      </div>
+				{/* center */}
+				<div className='flex col-start-2 col-end-4 items-center gap-2 justify-center'>
+					<span className='text-brown-outline font-semibold text-4xl ml-2'>
+						{cookies}
+					</span>
+					<img src='/images/cookie.png' className='w-8 h-8' />
+				</div>
 
-      <BottomNav />
-    </div>
-  );
+				{/* right nav */}
+				<div className='flex flex-col col-span-1 gap-4'>
+					{rightItems.map((item, index) => (
+						<button
+							key={index}
+							className='relative bg-yellow-300 p-3 rounded-md flex flex-col items-center'
+							onClick={() => navigate(item.href)}
+						>
+							<img
+								src={item.image}
+								className='rounded-md w-14 h-14'
+								alt={item.label}
+							/>
+							<span className='absolute -top-3 text-sm font-bold text-yellow-outline'>
+								{item.label}
+							</span>
+						</button>
+					))}
+				</div>
+			</div>
+
+			{/* Main Chicken */}
+			<div className='flex-1 flex flex-col items-center justify-center relative'>
+				{/* egg */}
+				<img
+					src='/images/egg.PNG'
+					alt='egg'
+					className='w-36 h-48 z-10 relative'
+				/>
+
+				{/* Level Info */}
+				<div className='mt-4 bg-yellow-700 border-2 border-[#171717]  rounded-lg p-2 pt-4 w-80 flex justify-between items-center z-10 relative'>
+					<div className='text-white'>
+						<span className='absolute -top-6 text-2xl font-bold text-yellow-outline'>
+							Уровень {level}
+						</span>
+						<div className='flex items-center gap-1'>
+							<span className='text-2xl font-bold text-brown-outline'>
+								{eggsPerDay}
+							</span>
+							<img src='/images/egg.PNG' className='w-8 h-10' />
+							<span className='text-2xl font-bold text-brown-outline'>
+								{' '}
+								в день
+							</span>
+						</div>
+					</div>
+					<div className='flex flex-col items-end'>
+						<div className='flex items-center gap-1'>
+							<span className='text-xl font-bold text-brown-outline'>100</span>
+							<img src='/images/cookie.png' className='w-4 h-4' />
+						</div>
+						<button className='bg-green-500 border border-[#171717]  px-2 rounded flex items-center text-xl font-bold text-brown-outline'>
+							Улучшить
+						</button>
+					</div>
+				</div>
+
+				<button className='mt-4 border-2 border-[#171717] bg-yellow-400 w-80 py-2 rounded-lg text-2xl font-bold text-dark-outline z-10'>
+					Начать сбор
+				</button>
+			</div>
+
+			<BottomNav />
+		</div>
+	)
 }
